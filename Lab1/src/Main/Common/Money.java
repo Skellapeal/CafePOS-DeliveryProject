@@ -8,10 +8,14 @@ public final class Money implements Comparable<Money> {
     private final BigDecimal amount;
 
     public static Money of(double value)
-    { ... }
+    {
+        return new Money(BigDecimal.valueOf(value));
+    }
 
     public static Money zero()
-    { ... }
+    {
+        return new Money(BigDecimal.ZERO);
+    }
 
     public Money(BigDecimal a)
     {
@@ -21,17 +25,40 @@ public final class Money implements Comparable<Money> {
 
     public Money add(Money other)
     {
-        if(other == null || other.amount.doubleValue() < 0)
+        if (other == null)
         {
-            throw new IllegalArgumentException("check yo numbers");
+            throw new IllegalArgumentException("Class: Money is null.");
+        }
+        else if (other.amount.doubleValue() < 0)
+        {
+            throw new IllegalArgumentException(other.amount + " is not a valid value for variable 'amount.'");
         }
         return new Money(other.amount.add(amount));
+    }
+
+    public Money subtract(Money other)
+    {
+        if (other == null)
+        {
+            throw new IllegalArgumentException("Class: Money is null.");
+        }
+        else if (other.amount.doubleValue() < 0)
+        {
+            throw new IllegalArgumentException(other.amount + " is not a valid value for variable 'amount.'");
+        }
+        return new Money(amount.subtract(other.amount));
     }
 
     public Money multiply(int qty)
     {
         BigDecimal quant = new BigDecimal(qty);
         return new Money(quant.multiply(amount));
+    }
+
+    public Money divide(int qty)
+    {
+        BigDecimal quant = new BigDecimal(qty);
+        return new Money(amount.divide(quant, 2, RoundingMode.HALF_UP));
     }
 
     @Override

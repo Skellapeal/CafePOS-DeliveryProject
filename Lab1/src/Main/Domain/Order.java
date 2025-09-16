@@ -2,7 +2,6 @@ package Main.Domain;
 
 import Main.Common.Money;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,10 +13,6 @@ public class Order
 
     public void addItem(LineItem li)
     {
-        if (li.quantity() <= 0)
-        {
-            throw new IllegalArgumentException("cannot add item quantity of 0 or less");
-        }
         items.add(li);
     }
 
@@ -28,14 +23,15 @@ public class Order
 
     public Money taxAtPercent(int percent)
     {
-        Money totalCost = new Money(BigDecimal.valueOf(0));
-
-        for(LineItem li: items)
+        if(percent < 0)
         {
-            totalCost.add(li.lineTotal());
+            throw new IllegalArgumentException("Percent must be greater than 0");
         }
 
-        totalCost = ;
+        return subtotal().multiply(percent).divide(100);
     }
-    public Money totalWithTax(int percent) { ... }
+    public Money totalWithTax(int percent)
+    {
+        return taxAtPercent(percent).add(subtotal());
+    }
 }
