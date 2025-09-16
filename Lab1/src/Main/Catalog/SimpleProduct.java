@@ -16,11 +16,10 @@ public final class SimpleProduct implements Product
         this.name = name;
         this.basePrice = basePrice;
 
-        if(basePrice.compareTo(new Money(BigDecimal.valueOf(0))) < 0)
+        if(basePrice.compareTo(Money.zero()) < 0)
         {
             throw new IllegalArgumentException("basePrice cant be less than 0");
         }
-
     }
 
     @Override public String id() { return id; }

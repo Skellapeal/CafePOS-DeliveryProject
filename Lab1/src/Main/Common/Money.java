@@ -23,9 +23,9 @@ public final class Money implements Comparable<Money> {
         {
             throw new IllegalArgumentException("Amount required");
         }
-        else if(a.doubleValue() <= 0)
+        else if(a.doubleValue() < 0)
         {
-            throw new IllegalArgumentException("Amount must be greater than 0");
+            throw new IllegalArgumentException("Amount must be non-negative");
         }
         this.amount = a.setScale(2, RoundingMode.HALF_UP);
     }
@@ -36,7 +36,7 @@ public final class Money implements Comparable<Money> {
         {
             throw new IllegalArgumentException("Class: Money is null.");
         }
-        else if (other.amount.doubleValue() <= 0)
+        else if (other.amount.doubleValue() < 0)
         {
             throw new IllegalArgumentException(other.amount.toPlainString() + " is not a valid value for variable 'amount.' Must be greater than 0");
         }
@@ -49,7 +49,7 @@ public final class Money implements Comparable<Money> {
         {
             throw new IllegalArgumentException("Class: Money is null.");
         }
-        else if (other.amount.doubleValue() <= 0)
+        else if (other.amount.doubleValue() < 0)
         {
             throw new IllegalArgumentException(other.amount.toPlainString() + " is not a valid value for variable 'amount.' Must be greater than 0");
         }
@@ -81,5 +81,11 @@ public final class Money implements Comparable<Money> {
         }
         return 0;
     }
-// equals, hashCode, toString, etc.
+
+    @Override
+    public String toString()
+    {
+        return amount.toPlainString();
+    }
+// hashCode, toString, etc.
 }

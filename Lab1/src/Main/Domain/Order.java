@@ -37,4 +37,14 @@ public class Order
         }
         return taxAtPercent(percent).add(subtotal());
     }
+
+    public String id()
+    {
+        return Long.toString(id);
+    }
+
+    public List<LineItem> items()
+    {
+        return items;
+    }
 }
