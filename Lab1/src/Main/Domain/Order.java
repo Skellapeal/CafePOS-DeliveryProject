@@ -27,11 +27,14 @@ public class Order
         {
             throw new IllegalArgumentException("Percent must be greater than 0");
         }
-
         return subtotal().multiply(percent).divide(100);
     }
     public Money totalWithTax(int percent)
     {
+        if(percent < 0)
+        {
+            throw new IllegalArgumentException("Percent must be greater than 0");
+        }
         return taxAtPercent(percent).add(subtotal());
     }
 }
