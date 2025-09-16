@@ -2,8 +2,9 @@ package Main.Domain;
 
 public class OrderIds
 {
-
-    public static long next() {
-        return 0;
+    private static long sequence = 1001L;
+    public static long next()
+    {
+        return sequence++;
     }
 }
