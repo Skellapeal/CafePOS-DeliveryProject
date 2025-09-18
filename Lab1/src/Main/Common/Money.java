@@ -34,11 +34,7 @@ public final class Money implements Comparable<Money> {
     {
         if (other == null)
         {
-            throw new IllegalArgumentException("Class: Money is null.");
-        }
-        else if (other.amount.doubleValue() < 0)
-        {
-            throw new IllegalArgumentException(other.amount.toPlainString() + " is not a valid value for variable 'amount.' Must be greater than 0");
+            throw new IllegalArgumentException("Class: Money for addition is null.");
         }
         return new Money(other.amount.add(amount));
     }
@@ -47,23 +43,27 @@ public final class Money implements Comparable<Money> {
     {
         if (other == null)
         {
-            throw new IllegalArgumentException("Class: Money is null.");
-        }
-        else if (other.amount.doubleValue() < 0)
-        {
-            throw new IllegalArgumentException(other.amount.toPlainString() + " is not a valid value for variable 'amount.' Must be greater than 0");
+            throw new IllegalArgumentException("Class: Money for subtraction is null.");
         }
         return new Money(amount.subtract(other.amount));
     }
 
     public Money multiply(int qty)
     {
+        if (qty < 0)
+        {
+            throw new IllegalArgumentException("Class: Money for *Multiplication* is negative.");
+        }
         BigDecimal quant = new BigDecimal(qty);
         return new Money(quant.multiply(amount));
     }
 
     public Money divide(int qty)
     {
+        if (qty < 0)
+        {
+            throw new IllegalArgumentException("Class: Money for *Division* is negative.");
+        }
         BigDecimal quant = new BigDecimal(qty);
         return new Money(amount.divide(quant, 2, RoundingMode.HALF_UP));
     }

@@ -15,11 +15,6 @@ public final class SimpleProduct implements Product
         this.id = id;
         this.name = name;
         this.basePrice = basePrice;
-
-        if(basePrice.compareTo(Money.zero()) < 0)
-        {
-            throw new IllegalArgumentException("basePrice cant be less than 0");
-        }
     }
 
     @Override public String id() { return id; }
