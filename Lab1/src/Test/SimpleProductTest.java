@@ -2,22 +2,17 @@ package Test;
 
 import Main.Catalog.SimpleProduct;
 import Main.Common.Money;
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class SimpleProductTest
 {
     @Test
     public void ExceptionSimpleProductTest()
     {
-        try
-        {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
             SimpleProduct simpleProduct = new SimpleProduct("SQE","Test", Money.of(-1));
-        }
-        catch(IllegalArgumentException e)
-        {
-            System.out.println("Caught exception for SimpleProduct: " + e.getMessage());
-        }
+        });
     }
     @Test
     public void SimpleProductTest()

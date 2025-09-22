@@ -7,11 +7,10 @@ import Main.Common.Money;
 import Main.Domain.LineItem;
 import Main.Domain.Order;
 import Main.Domain.OrderIds;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import java.util.NoSuchElementException;
-
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class OrderTest
 
@@ -49,29 +48,17 @@ public class OrderTest
     @Test
     public void testOrderWithAtTaxPercentException()
     {
-        try
-        {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
             Order order = new Order(OrderIds.next());
-
             order.taxAtPercent(-1);
-        }
-        catch(IllegalArgumentException e)
-        {
-            System.out.println("Caught exception: " + e.getMessage());
-        }
+        });
     }
     @Test
     public void testOrderWithTotalWithTaxException()
     {
-        try
-        {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
             Order order = new Order(OrderIds.next());
-
             order.totalWithTax(-1);
-        }
-        catch(IllegalArgumentException e)
-        {
-            System.out.println("Caught exception: " + e.getMessage());
-        }
+        });
     }
 }

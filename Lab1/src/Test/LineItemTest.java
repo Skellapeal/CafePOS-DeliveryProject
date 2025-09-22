@@ -5,11 +5,12 @@ import Main.Catalog.InMemoryCatalog;
 import Main.Catalog.SimpleProduct;
 import Main.Common.Money;
 import Main.Domain.LineItem;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.NoSuchElementException;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LineItemTest
 {
@@ -30,33 +31,19 @@ public class LineItemTest
     @Test
     public void testLineItemIDException()
     {
-        try
-        {
+        Assertions.assertThrows(NoSuchElementException.class, () -> {
             Catalog catalogTest = new InMemoryCatalog();
-
             catalogTest.add(new SimpleProduct("P-ESP", "Espresso", Money.of(2.50)));
-
             LineItem item1 = new LineItem(catalogTest.findById("").orElseThrow(), 1);
-        }
-        catch(NoSuchElementException e)
-        {
-            System.out.println("Caught exception for Id: " + e.getMessage());
-        }
+        });
     }
     @Test
     public void testLineItemQuantityException()
     {
-        try
-        {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
             Catalog catalogTest = new InMemoryCatalog();
-
             catalogTest.add(new SimpleProduct("P-ESP", "Espresso", Money.of(2.50)));
-
             LineItem item2 = new LineItem(catalogTest.findById("P-ESP").orElseThrow(), 0);
-        }
-        catch(IllegalArgumentException e)
-        {
-            System.out.println("Caught exception for quantity: " + e.getMessage());
-        }
+        });
     }
 }

@@ -1,55 +1,42 @@
 package Test;
 
 import Main.Common.Money;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
 import java.math.BigDecimal;
 
 public class MoneyTest
 {
-    @Test (expected = IllegalArgumentException.class)
+    @Test
     public void ExceptionMoneyNegativeTest()
     {
-        Money money = new Money(BigDecimal.valueOf(-10));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Money money = new Money(BigDecimal.valueOf(-10));
+        });
     }
     @Test
     public void ExceptionMoneyNullTest()
     {
-        try
-        {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
             Money money = new Money(null);
-        }
-        catch(IllegalArgumentException e)
-        {
-            System.out.println("Caught exception: " + e.getMessage());
-        }
+        });
     }
     @Test
     public void ExceptionAdditionIsNullTest()
     {
-        try
-        {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
             Money money = new Money(BigDecimal.valueOf(10));
             Money result = money.add(null);
-        }
-        catch(IllegalArgumentException e)
-        {
-            System.out.println("Caught exception: " + e.getMessage());
-        }
+        });
     }
     @Test
     public void ExceptionAdditionIsNegativeTest()
     {
-        try
-        {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
             Money money = new Money(BigDecimal.valueOf(10));
             Money result = money.add(Money.of(-1));
-        }
-        catch(IllegalArgumentException e)
-        {
-            System.out.println("Caught exception: " + e.getMessage());
-        }
+        });
     }
     @Test
     public void AdditionTest()
@@ -62,28 +49,18 @@ public class MoneyTest
     @Test
     public void ExceptionSubtractionIsNullTest()
     {
-        try
-        {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
             Money money = new Money(BigDecimal.valueOf(10));
             Money result = money.subtract(null);
-        }
-        catch(IllegalArgumentException e)
-        {
-            System.out.println("Caught exception: " + e.getMessage());
-        }
+        });
     }
     @Test
     public void ExceptionSubtractionIsNegativeTest()
     {
-        try
-        {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
             Money money = new Money(BigDecimal.valueOf(10));
             Money result = money.subtract(Money.of(-1));
-        }
-        catch(IllegalArgumentException e)
-        {
-            System.out.println("Caught exception: " + e.getMessage());
-        }
+        });
     }
     @Test
     public void SubtractMoneyTest()
