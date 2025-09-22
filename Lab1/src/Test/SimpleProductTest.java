@@ -15,7 +15,7 @@ public class SimpleProductTest
         });
     }
     @Test
-    public void SimpleProductTest()
+    public void SimpleProductValueTest()
     {
         SimpleProduct simpleProduct = new SimpleProduct("SQE","Test", Money.of(1));
 
