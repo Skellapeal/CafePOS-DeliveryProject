@@ -1,6 +1,7 @@
 package Main.Domain;
 
 import Main.Common.Money;
+import Main.Payment.PaymentStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,7 @@ public class Order
         }
         return subtotal().multiply(percent).divide(100);
     }
+
     public Money totalWithTax(int percent)
     {
         if(percent < 0)
@@ -36,6 +38,15 @@ public class Order
             throw new IllegalArgumentException("Percent must be greater than 0");
         }
         return taxAtPercent(percent).add(subtotal());
+    }
+
+    public void pay(PaymentStrategy paymentMethod)
+    {
+        if(paymentMethod == null)
+        {
+            throw new IllegalArgumentException("Payment method required");
+        }
+        paymentMethod.pay(this);
     }
 
     public String id()
