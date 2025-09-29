@@ -10,9 +10,8 @@ public class SimpleProductTest
     @Test
     public void ExceptionSimpleProductTest()
     {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            SimpleProduct simpleProduct = new SimpleProduct("SQE","Test", Money.of(-1));
-        });
+        Assertions.assertThrows(IllegalArgumentException.class, () ->
+                new SimpleProduct("SQE","Test", Money.of(-1)));
     }
     @Test
     public void SimpleProductValueTest()
