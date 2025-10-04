@@ -11,10 +11,56 @@ public class Order
     private final long id;
     private final List<LineItem> items = new ArrayList<>();
     public Order(long id) { this.id = id; }
+    private final List<OrderObserver> observers = new ArrayList<>();
+/*
+code for Observer management
+ */
+    public void register(OrderObserver o)
+    {
+        if  (o == null)
+        {
+            throw new IllegalArgumentException("orderObserver cannot be null for registering");
+        }
+        if  (observers.contains(o))
+        {
+            return;
+        }
+        observers.add(o);
+    }
 
+    public void unregister(OrderObserver o)
+    {
+        if  (o == null)
+        {
+            throw new IllegalArgumentException("orderObserver cannot be null for unregistering");
+        }
+        if  (!observers.contains(o))
+        {
+            return;
+        }
+        observers.remove(o);
+    }
+
+    private void notifyObservers(String event)
+    {
+        for(OrderObserver o : observers)
+        {
+            o.updated(this, event);
+        }
+    }
+
+    public void markReady()
+    {
+        notifyObservers("ready");
+    }
+
+/*
+code for order management
+ */
     public void addItem(LineItem li)
     {
         items.add(li);
+        notifyObservers("itemAdded");
     }
 
     public Money subtotal()
@@ -47,6 +93,7 @@ public class Order
             throw new IllegalArgumentException("Payment method required");
         }
         paymentMethod.pay(this);
+        notifyObservers("paid");
     }
 
     public String id()
