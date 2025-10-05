@@ -11,7 +11,7 @@ public final class KitchenDisplay implements OrderObserver
         }
         if(event.equals("paid"))
         {
-            System.out.printf("[Kitchen] Order %s: Payment Received\n",order.id());
+            System.out.printf("[Kitchen] Order #%s: Payment Received\n",order.id());
         }
     }
 }

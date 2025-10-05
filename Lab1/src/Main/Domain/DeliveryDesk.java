@@ -7,7 +7,7 @@ public final class DeliveryDesk implements OrderObserver
     {
         if(event.equals("ready"))
         {
-            System.out.printf("[Delivery] Order %s: is ready for delivery\n",order.id());
+            System.out.printf("[Delivery] Order #%s: is ready for delivery\n",order.id());
         }
     }
 }

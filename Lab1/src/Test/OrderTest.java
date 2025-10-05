@@ -7,14 +7,24 @@ import Main.Common.Money;
 import Main.Domain.LineItem;
 import Main.Domain.Order;
 import Main.Domain.OrderIds;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import Main.Domain.OrderObserver;
+import Main.Payment.CashPayment;
+import org.junit.jupiter.api.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.lang.reflect.Field;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class OrderTest
-
 {
+    @BeforeEach
+    public void resetOrderIds() throws Exception
+    {
+        Field field = OrderIds.class.getDeclaredField("sequence");
+        field.setAccessible(true);
+        field.setLong(null, 1001L);
+    }
+
     @Test
     public void testOrder()
     {
@@ -34,7 +44,6 @@ public class OrderTest
         var taxAtPercent = order.taxAtPercent(10);
         var totalWithTax = order.totalWithTax(10);
 
-        //test if total order is calculated correctly
         assertEquals(0, subtotal.compareTo(Money.of(8.50)));
 
         assertEquals(2, order.items().size());
@@ -45,6 +54,7 @@ public class OrderTest
 
         assertEquals("1001", order.id());
     }
+
     @Test
     public void testOrderWithAtTaxPercentException()
     {
@@ -53,6 +63,7 @@ public class OrderTest
             order.taxAtPercent(-1);
         });
     }
+
     @Test
     public void testOrderWithTotalWithTaxException()
     {
@@ -60,5 +71,178 @@ public class OrderTest
             Order order = new Order(OrderIds.next());
             order.totalWithTax(-1);
         });
+    }
+
+    @Test
+    public void testEmptyOrderSubtotal()
+    {
+        Order emptyOrder = new Order(OrderIds.next());
+        assertEquals(0, emptyOrder.subtotal().compareTo(Money.zero()));
+    }
+
+    @Test
+    public void testEmptyOrderTaxCalculation()
+    {
+        Order emptyOrder = new Order(OrderIds.next());
+        assertEquals(0, emptyOrder.taxAtPercent(15).compareTo(Money.zero()));
+        assertEquals(0, emptyOrder.totalWithTax(15).compareTo(Money.zero()));
+    }
+
+    @Test
+    public void testOrderWithSingleItem()
+    {
+        Catalog catalog = new InMemoryCatalog();
+        catalog.add(new SimpleProduct("P-SINGLE", "Single Item", Money.of(10.00)));
+        Order order = new Order(OrderIds.next());
+        order.addItem(new LineItem(catalog.findById("P-SINGLE").orElseThrow(), 1));
+
+        assertEquals(1, order.items().size());
+        assertEquals(0, order.subtotal().compareTo(Money.of(10.00)));
+        assertEquals(0, order.taxAtPercent(20).compareTo(Money.of(2.00)));
+        assertEquals(0, order.totalWithTax(20).compareTo(Money.of(12.00)));
+    }
+
+    @Test
+    public void testOrderWithMultipleItemsSameProduct()
+    {
+        Catalog catalog = new InMemoryCatalog();
+        catalog.add(new SimpleProduct("P-MULTI", "Multi Item", Money.of(5.00)));
+        Order order = new Order(OrderIds.next());
+
+        order.addItem(new LineItem(catalog.findById("P-MULTI").orElseThrow(), 2));
+        order.addItem(new LineItem(catalog.findById("P-MULTI").orElseThrow(), 3));
+
+        assertEquals(2, order.items().size());
+        assertEquals(0, order.subtotal().compareTo(Money.of(25.00)));
+    }
+
+    @Test
+    public void testOrderObserverRegistration()
+    {
+        Order order = new Order(OrderIds.next());
+        TestObserver observer = new TestObserver();
+
+        order.register(observer);
+        assertEquals(0, observer.updateCount);
+
+        SimpleProduct product = new SimpleProduct("P-OBS", "Observer Test", Money.of(1.00));
+        order.addItem(new LineItem(product, 1));
+        assertEquals(1, observer.updateCount);
+        assertEquals("itemAdded", observer.lastEvent);
+    }
+
+    @Test
+    public void testOrderObserverUnregistration()
+    {
+        Order order = new Order(OrderIds.next());
+        TestObserver observer = new TestObserver();
+
+        order.register(observer);
+        order.unregister(observer);
+
+        SimpleProduct product = new SimpleProduct("P-UNREG", "Unregister Test", Money.of(1.00));
+        order.addItem(new LineItem(product, 1));
+        assertEquals(0, observer.updateCount);
+    }
+
+    @Test
+    public void ExceptionOrderObserverNullRegistrationTest()
+    {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Order order = new Order(OrderIds.next());
+            order.register(null);
+        });
+    }
+
+    @Test
+    public void ExceptionOrderObserverNullUnregistrationTest()
+    {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Order order = new Order(OrderIds.next());
+            order.unregister(null);
+        });
+    }
+
+    @Test
+    public void testOrderPaymentNotification()
+    {
+        Order order = new Order(OrderIds.next());
+        TestObserver observer = new TestObserver();
+        order.register(observer);
+
+        SimpleProduct product = new SimpleProduct("P-PAY", "Payment Test", Money.of(10.00));
+        order.addItem(new LineItem(product, 1));
+
+        order.pay(new CashPayment());
+        assertEquals(2, observer.updateCount);
+        assertEquals("paid", observer.lastEvent);
+    }
+
+    @Test
+    public void testOrderMarkReady()
+    {
+        Order order = new Order(OrderIds.next());
+        TestObserver observer = new TestObserver();
+        order.register(observer);
+
+        order.markReady();
+        assertEquals(1, observer.updateCount);
+        assertEquals("ready", observer.lastEvent);
+    }
+
+    @Test
+    public void ExceptionOrderPaymentNullTest()
+    {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Order order = new Order(OrderIds.next());
+            order.pay(null);
+        });
+    }
+
+    @Test
+    public void testOrderIdConsistency()
+    {
+        long orderId = OrderIds.next();
+        Order order = new Order(orderId);
+        assertEquals(String.valueOf(orderId), order.id());
+    }
+
+    @Test
+    public void testOrderWithZeroPercentTax()
+    {
+        Catalog catalog = new InMemoryCatalog();
+        catalog.add(new SimpleProduct("P-NOTAX", "No Tax Item", Money.of(20.00)));
+        Order order = new Order(OrderIds.next());
+        order.addItem(new LineItem(catalog.findById("P-NOTAX").orElseThrow(), 1));
+
+        assertEquals(0, order.taxAtPercent(0).compareTo(Money.zero()));
+        assertEquals(0, order.totalWithTax(0).compareTo(Money.of(20.00)));
+    }
+
+    @Test
+    public void testOrderWithHighTaxPercent()
+    {
+        Catalog catalog = new InMemoryCatalog();
+        catalog.add(new SimpleProduct("P-HITAX", "High Tax Item", Money.of(100.00)));
+        Order order = new Order(OrderIds.next());
+        order.addItem(new LineItem(catalog.findById("P-HITAX").orElseThrow(), 1));
+
+        assertEquals(0, order.taxAtPercent(50).compareTo(Money.of(50.00)));
+        assertEquals(0, order.totalWithTax(50).compareTo(Money.of(150.00)));
+    }
+
+    private static class TestObserver implements OrderObserver
+    {
+        public int updateCount = 0;
+        public String lastEvent = "";
+        public Order lastOrder = null;
+
+        @Override
+        public void updated(Order order, String event)
+        {
+            updateCount++;
+            lastEvent = event;
+            lastOrder = order;
+        }
     }
 }

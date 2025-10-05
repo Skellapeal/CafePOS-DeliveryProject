@@ -87,5 +87,4 @@ public final class Money implements Comparable<Money> {
     {
         return amount.toPlainString();
     }
-// hashCode, toString, etc.
 }
