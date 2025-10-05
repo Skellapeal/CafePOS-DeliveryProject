@@ -122,7 +122,7 @@ public class OrderTest
         Order order = new Order(OrderIds.next());
         TestObserver observer = new TestObserver();
 
-        order.register(observer);
+        order.registerOrder(observer);
         assertEquals(0, observer.updateCount);
 
         SimpleProduct product = new SimpleProduct("P-OBS", "Observer Test", Money.of(1.00));
@@ -137,8 +137,8 @@ public class OrderTest
         Order order = new Order(OrderIds.next());
         TestObserver observer = new TestObserver();
 
-        order.register(observer);
-        order.unregister(observer);
+        order.registerOrder(observer);
+        order.unregisterOrder(observer);
 
         SimpleProduct product = new SimpleProduct("P-UNREG", "Unregister Test", Money.of(1.00));
         order.addItem(new LineItem(product, 1));
@@ -150,7 +150,7 @@ public class OrderTest
     {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             Order order = new Order(OrderIds.next());
-            order.register(null);
+            order.registerOrder(null);
         });
     }
 
@@ -159,7 +159,7 @@ public class OrderTest
     {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             Order order = new Order(OrderIds.next());
-            order.unregister(null);
+            order.unregisterOrder(null);
         });
     }
 
@@ -168,7 +168,7 @@ public class OrderTest
     {
         Order order = new Order(OrderIds.next());
         TestObserver observer = new TestObserver();
-        order.register(observer);
+        order.registerOrder(observer);
 
         SimpleProduct product = new SimpleProduct("P-PAY", "Payment Test", Money.of(10.00));
         order.addItem(new LineItem(product, 1));
@@ -183,7 +183,7 @@ public class OrderTest
     {
         Order order = new Order(OrderIds.next());
         TestObserver observer = new TestObserver();
-        order.register(observer);
+        order.registerOrder(observer);
 
         order.markReady();
         assertEquals(1, observer.updateCount);

@@ -6,7 +6,7 @@ import Main.Payment.PaymentStrategy;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Order
+public class Order implements OrderPublisher
 {
     private final long id;
     private final List<LineItem> items = new ArrayList<>();
@@ -15,7 +15,8 @@ public class Order
 /*
 code for Observer management
  */
-    public void register(OrderObserver o)
+    @Override
+    public void registerOrder(OrderObserver o)
     {
         if  (o == null)
         {
@@ -28,7 +29,8 @@ code for Observer management
         observers.add(o);
     }
 
-    public void unregister(OrderObserver o)
+    @Override
+    public void unregisterOrder(OrderObserver o)
     {
         if  (o == null)
         {
@@ -40,8 +42,8 @@ code for Observer management
         }
         observers.remove(o);
     }
-
-    private void notifyObservers(String event)
+    @Override
+    public void notifyObservers(String event)
     {
         for(OrderObserver o : observers)
         {

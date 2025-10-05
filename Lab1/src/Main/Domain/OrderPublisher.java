@@ -4,5 +4,5 @@ public interface OrderPublisher
 {
     void registerOrder(OrderObserver o);
     void unregisterOrder(OrderObserver o);
-    void notifyObservers(Order order,  String event);
+    void notifyObservers(String event);
 }

@@ -16,9 +16,9 @@ public final class Week4Demo
         catalog.add(new SimpleProduct("P-ESP", "Espresso", Money.of(2.50)));
         Order order = new Order(OrderIds.next());
 
-        order.register(new KitchenDisplay());
-        order.register(new DeliveryDesk());
-        order.register(new CustomerNotifier());
+        order.registerOrder(new KitchenDisplay());
+        order.registerOrder(new DeliveryDesk());
+        order.registerOrder(new CustomerNotifier());
         order.addItem(new LineItem(catalog.findById("P-ESP").orElseThrow(), 1));
         order.pay(new CashPayment());
 
