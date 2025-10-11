@@ -19,4 +19,18 @@ public final class InMemoryCatalog implements Catalog
     public Optional<Product> findById(String id) {
         return Optional.ofNullable(byId.get(id));
     }
+
+    @Override
+    public String listProducts()
+    {
+        StringBuilder productList = new StringBuilder();
+        int counter = 0;
+        for (Product p : byId.values())
+        {
+            counter++;
+            productList.append(counter).append(".").append(p.name()).append("\n");
+        }
+
+        return productList.toString();
+    }
 }

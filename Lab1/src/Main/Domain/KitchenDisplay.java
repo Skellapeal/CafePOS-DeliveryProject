@@ -7,7 +7,7 @@ public final class KitchenDisplay implements OrderObserver
     {
         if(event.equals("itemAdded"))
         {
-            System.out.printf("\n[Kitchen] Order #%s: %s %s added\n", order.id(), order.items().getLast().quantity(),order.items().getLast().product().name());
+            System.out.printf("\n[Kitchen] Order #%s: %s %s added\n", order.id(), order.items().getLast().quantity(), order.items().getLast().product().name());
         }
         if(event.equals("paid"))
         {
