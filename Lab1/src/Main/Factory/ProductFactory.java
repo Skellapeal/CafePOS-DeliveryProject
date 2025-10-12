@@ -34,7 +34,8 @@ public final class ProductFactory
                 case "OAT" -> new OatMilk(product);
                 case "SYP" -> new Syrup(product);
                 case "L" -> new SizeLarge(product);
-                default -> throw new IllegalArgumentException("Unknown addon: " + parts[i]);
+                default -> throw new
+                        IllegalArgumentException("Unknown addon: " + parts[i]);
             };
         }
         return product;
