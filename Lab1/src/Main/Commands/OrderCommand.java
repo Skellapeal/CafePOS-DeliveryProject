@@ -3,6 +3,7 @@ package Main.Commands;
 import Main.Catalog.Product;
 import Main.Common.Money;
 import Main.Domain.LineItem;
+import Main.Domain.Priced;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,10 +62,10 @@ public class OrderCommand implements ICommand
     {
         System.out.println("Step 2: Add customisations (optional)");
         System.out.println("Available options:");
-        System.out.println("   1. SHOT - Extra shot (+€0.50)");
+        System.out.println("   1. SHOT - Extra shot (+€0.80)");
         System.out.println("   2. OAT - Oat Milk (+€0.30");
-        System.out.println("   3. SYP - Flavoured Syrup (+€0.25)");
-        System.out.println("   4. L - Large(€0.40)");
+        System.out.println("   3. SYP - Flavoured Syrup (+€0.40)");
+        System.out.println("   4. L - Large(+€0.70)");
 
         List<String> addons = new ArrayList<>();
 
@@ -134,7 +135,15 @@ public class OrderCommand implements ICommand
         try
         {
             Product product = context.getProductFactory().create(recipe);
-            Money total = product.basePrice().multiply(quantity);
+            Money total;
+            if(product instanceof Priced priced)
+            {
+                total = priced.price().multiply(quantity);
+            }
+            else
+            {
+                total = product.basePrice().multiply(quantity);
+            }
 
             String divider = "-------------------------------------------------------";
             System.out.println("\n" + divider);
@@ -164,10 +173,18 @@ public class OrderCommand implements ICommand
             Product product = context.getProductFactory().create(recipe);
             context.getCurrentOrder().addItem(new LineItem(product, quantity));
 
-            Money itemTotal = product.basePrice().multiply(quantity);
+            Money total;
+            if(product instanceof Priced priced)
+            {
+                total = priced.price().multiply(quantity);
+            }
+            else
+            {
+                total = product.basePrice().multiply(quantity);
+            }
             System.out.println("\nAdded to order:");
-            System.out.println("   " + product.name() + " x" + quantity + " - €" + itemTotal);
-            System.out.println("   Order total: €" + context.getCurrentOrder().totalWithTax(24));
+            System.out.println("   " + product.name() + " x" + quantity + " - €" + total);
+            System.out.println("   Order total (@24%): €" + context.getCurrentOrder().totalWithTax(24));
         }
         catch (IllegalArgumentException e)
         {
