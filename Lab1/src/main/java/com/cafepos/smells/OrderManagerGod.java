@@ -68,7 +68,7 @@ public class OrderManagerGod
             {
                 // Step 2: Use of magic numbers. Consider extracting method called "calcDiscountPercent(discount)"
                 // subtotal.multiply.divide returns Money. No need to use Money.of()
-                discount = Money.of(subtotal.multiply(5).divide(100).asBigDecimal());
+                discount = subtotal.multiply(5).divide(100);
             }
             else if (discountCode.equalsIgnoreCase("COUPON1"))
             {
@@ -86,17 +86,17 @@ public class OrderManagerGod
         }
 
         // Step 2: A lot of building of new Money classes. This could be handled more elegantly
-        Money discounted = Money.of(subtotal.subtract(discount).asBigDecimal());
+        Money discounted = subtotal.subtract(discount);
         // Step 2: (This has been refactored so the code runs, but this is what I understood the original code to be doing)
         // asBigDecimal() does not return a BigDecimal type
         // furthermore, reliance on exposing an explicitly hidden variable needs revision
         // Step 2: This is not intuitively handled.
-        if (BigDecimal.valueOf(discounted.asBigDecimal()).signum() < 0) discounted = Money.zero();
+        if (discounted.compareTo(Money.zero()) < 0) discounted = Money.zero();
 
         // Step 2: Can be extracted into its own method
         // Also returns type of Money except for the call to "asBigDecimal"
         // Can just merge lines 96 and 97 into a single call.
-        var tax = Money.of(discounted.multiply(TAX_PERCENT).divide(100).asBigDecimal());
+        var tax = discounted.multiply(TAX_PERCENT).divide(100);
         var total = discounted.add(tax);
 
         // Step 2: Extract to its own method
@@ -127,7 +127,7 @@ public class OrderManagerGod
         receipt.append("Order (").append(recipe).append(") x").append(qty).append("\n");
         receipt.append("Subtotal: ").append(subtotal).append("\n");
 
-        if (BigDecimal.valueOf(discount.asBigDecimal()).signum() > 0)
+        if (discount.compareTo(Money.zero()) > 0)
         {
             receipt.append("Discount: -").append(discount).append("\n");
         }

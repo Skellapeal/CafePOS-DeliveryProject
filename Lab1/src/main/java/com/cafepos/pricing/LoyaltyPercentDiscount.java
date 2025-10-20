@@ -2,10 +2,10 @@ package main.java.com.cafepos.pricing;
 
 import main.java.com.cafepos.common.Money;
 
-public class LoyalDiscountPolicy implements DiscountPolicy
+public class LoyaltyPercentDiscount implements DiscountPolicy
 {
     private final int percent;
-    public LoyalDiscountPolicy(int percent)
+    public LoyaltyPercentDiscount(int percent)
     {
         this.percent = percent;
     }

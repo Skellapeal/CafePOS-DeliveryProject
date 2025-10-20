@@ -20,7 +20,7 @@ public class PricingService
         Money tax = taxPolicy.taxOn(discounted);
         Money total =  discounted.add(tax);
 
-        return new PricingResult(total, discounted, discounted, discounted);
+        return new PricingResult(subtotal, discount, tax, total);
     }
 
     public record PricingResult(Money subtotal, Money discount, Money tax, Money total)

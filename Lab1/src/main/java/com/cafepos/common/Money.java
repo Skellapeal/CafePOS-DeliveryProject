@@ -66,14 +66,9 @@ public final class Money implements Comparable<Money>
         return new Money(amount.divide(quant, 2, RoundingMode.HALF_UP));
     }
 
-    public double asBigDecimal()
-    {
-        return amount.doubleValue();
-    }
-
     @Override
-    public int compareTo(Money o) {
-
+    public int compareTo(Money o)
+    {
         if(amount.compareTo(o.amount) < 0)
         {
             return -1;
@@ -83,6 +78,14 @@ public final class Money implements Comparable<Money>
             return 1;
         }
         return 0;
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if(this == o) return true;
+        if(!(o instanceof Money otherMoney)) return false;
+        return amount.equals(otherMoney.amount);
     }
 
     @Override

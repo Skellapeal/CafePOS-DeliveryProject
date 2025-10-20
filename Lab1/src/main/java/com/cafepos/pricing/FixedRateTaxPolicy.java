@@ -2,11 +2,11 @@ package main.java.com.cafepos.pricing;
 
 import main.java.com.cafepos.common.Money;
 
-public class FixedTaxRate implements TaxPolicy
+public class FixedRateTaxPolicy implements TaxPolicy
 {
     private final int percent;
 
-    public FixedTaxRate(int percent)
+    public FixedRateTaxPolicy(int percent)
     {
         if(percent < 0 || percent > 100) throw new IllegalArgumentException();
 
