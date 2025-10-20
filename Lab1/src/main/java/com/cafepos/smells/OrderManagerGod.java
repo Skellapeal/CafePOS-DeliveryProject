@@ -6,6 +6,8 @@ import main.java.com.cafepos.catalog.Product;
 
 import java.math.BigDecimal;
 
+// Step 2: Massive class attempting to take control of many different operations that should be extracted to their own systems
+// No locally stored variables. Variables are either global or handled within the function itself reducing flexibility
 public class OrderManagerGod
 {
     // Step 2: public static globals are restrictive
