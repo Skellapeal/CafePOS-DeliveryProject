@@ -134,7 +134,7 @@ public class OrderManagerGod
 
         // Step 2: Use a formatted a string and append the string to the stringBuilder in order
         // to increase readability.
-        receipt.append("Tax (").append(TAX_PERCENT).append("%): ").append(tax).append("\n");
+        receipt.append("Tax: (").append(TAX_PERCENT).append("%): ").append(tax).append("\n");
         receipt.append("Total: ").append(total);
 
         String out = receipt.toString();
