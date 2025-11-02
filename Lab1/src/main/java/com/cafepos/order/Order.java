@@ -42,6 +42,7 @@ code for Observer management
         }
         observers.remove(o);
     }
+
     @Override
     public void notifyObservers(String event)
     {
