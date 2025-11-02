@@ -4,8 +4,7 @@ import main.java.com.cafepos.catalog.Catalog;
 import main.java.com.cafepos.catalog.InMemoryCatalog;
 import main.java.com.cafepos.catalog.SimpleProduct;
 import main.java.com.cafepos.common.Money;
-import main.java.com.cafepos.domain.*;
-import main.java.com.cafepos.domain.*;
+import main.java.com.cafepos.order.*;
 import main.java.com.cafepos.payment.CashPayment;
 
 public final class Week4Demo

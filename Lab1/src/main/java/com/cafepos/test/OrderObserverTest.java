@@ -1,8 +1,8 @@
 package main.java.com.cafepos.test;
 
-import main.java.com.cafepos.domain.Order;
-import main.java.com.cafepos.domain.OrderIds;
-import main.java.com.cafepos.domain.OrderObserver;
+import main.java.com.cafepos.order.Order;
+import main.java.com.cafepos.order.OrderIds;
+import main.java.com.cafepos.order.OrderObserver;
 
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;

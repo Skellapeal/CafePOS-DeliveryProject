@@ -2,7 +2,7 @@ package main.java.com.cafepos.commands;
 
 import main.java.com.cafepos.catalog.Product;
 import main.java.com.cafepos.common.Money;
-import main.java.com.cafepos.domain.LineItem;
+import main.java.com.cafepos.order.LineItem;
 
 public class AddItemCommand implements ICommand
 {

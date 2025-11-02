@@ -1,8 +1,6 @@
 package main.java.com.cafepos.commands;
 
-import main.java.com.cafepos.domain.*;
-import main.java.com.cafepos.payment.*;
-import main.java.com.cafepos.domain.*;
+import main.java.com.cafepos.order.*;
 import main.java.com.cafepos.payment.CardPayment;
 import main.java.com.cafepos.payment.CashPayment;
 import main.java.com.cafepos.payment.PaymentStrategy;

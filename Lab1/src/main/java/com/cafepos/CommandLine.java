@@ -1,15 +1,12 @@
 package main.java.com.cafepos;
 
-import main.java.com.cafepos.catalog.*;
 import main.java.com.cafepos.commands.*;
 import main.java.com.cafepos.catalog.Catalog;
 import main.java.com.cafepos.catalog.InMemoryCatalog;
 import main.java.com.cafepos.catalog.SimpleProduct;
-import main.java.com.cafepos.commands.*;
 import main.java.com.cafepos.common.Money;
-import main.java.com.cafepos.domain.*;
-import main.java.com.cafepos.domain.*;
 import main.java.com.cafepos.factory.ProductFactory;
+import main.java.com.cafepos.order.*;
 
 import java.util.*;
 

@@ -1,7 +1,6 @@
 package main.java.com.cafepos.commands;
 
-import main.java.com.cafepos.domain.*;
-import main.java.com.cafepos.domain.*;
+import main.java.com.cafepos.order.*;
 
 public class ClearOrderCommand implements ICommand
 {

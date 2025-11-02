@@ -2,14 +2,14 @@ package main.java.com.cafepos.test;
 
 import main.java.com.cafepos.catalog.SimpleProduct;
 import main.java.com.cafepos.common.Money;
-import main.java.com.cafepos.domain.KitchenDisplay;
-import main.java.com.cafepos.domain.LineItem;
-import main.java.com.cafepos.domain.Order;
+import main.java.com.cafepos.order.KitchenDisplay;
+import main.java.com.cafepos.order.LineItem;
+import main.java.com.cafepos.order.Order;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import main.java.com.cafepos.domain.OrderIds;
+import main.java.com.cafepos.order.OrderIds;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 

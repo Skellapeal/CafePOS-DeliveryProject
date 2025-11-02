@@ -1,7 +1,7 @@
 package main.java.com.cafepos.commands;
 
 import main.java.com.cafepos.catalog.Catalog;
-import main.java.com.cafepos.domain.Order;
+import main.java.com.cafepos.order.Order;
 import main.java.com.cafepos.factory.ProductFactory;
 
 import java.util.Scanner;
@@ -38,11 +38,11 @@ public class CommandContext
 
     public void displayError(String message)
     {
-        System.out.println("❌ " + message);
+        System.out.println("X " + message);
     }
 
     public void displaySuccess(String message)
     {
-        System.out.println("✅ " + message);
+        System.out.println("- " + message);
     }
 }

@@ -1,7 +1,7 @@
 package main.java.com.cafepos.test;
 
 import main.java.com.cafepos.common.Money;
-import main.java.com.cafepos.pricing.*;
+import main.java.com.cafepos.checkout.*;
 import main.java.com.cafepos.smells.OrderManagerGod;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

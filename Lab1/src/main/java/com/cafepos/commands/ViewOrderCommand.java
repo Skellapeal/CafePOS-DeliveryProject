@@ -1,6 +1,6 @@
 package main.java.com.cafepos.commands;
 
-import main.java.com.cafepos.domain.LineItem;
+import main.java.com.cafepos.order.LineItem;
 
 public class ViewOrderCommand implements ICommand
 {

@@ -1,8 +1,8 @@
 package main.java.com.cafepos.test;
 
-import main.java.com.cafepos.domain.CustomerNotifier;
-import main.java.com.cafepos.domain.Order;
-import main.java.com.cafepos.domain.OrderIds;
+import main.java.com.cafepos.order.CustomerNotifier;
+import main.java.com.cafepos.order.Order;
+import main.java.com.cafepos.order.OrderIds;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;

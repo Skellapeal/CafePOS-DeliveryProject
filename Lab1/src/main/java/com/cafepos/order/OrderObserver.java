@@ -1,0 +1,6 @@
+package main.java.com.cafepos.order;
+
+public interface OrderObserver
+{
+    void updated(Order order, String event);
+}

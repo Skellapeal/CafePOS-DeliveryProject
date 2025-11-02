@@ -6,8 +6,8 @@ import main.java.com.cafepos.common.Money;
 import main.java.com.cafepos.decorator.ExtraShot;
 import main.java.com.cafepos.decorator.OatMilk;
 import main.java.com.cafepos.decorator.SizeLarge;
-import main.java.com.cafepos.domain.LineItem;
-import main.java.com.cafepos.domain.Order;
+import main.java.com.cafepos.order.LineItem;
+import main.java.com.cafepos.order.Order;
 import main.java.com.cafepos.decorator.Priced;
 import main.java.com.cafepos.factory.ProductFactory;
 

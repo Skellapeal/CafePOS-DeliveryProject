@@ -4,10 +4,10 @@ import main.java.com.cafepos.catalog.Catalog;
 import main.java.com.cafepos.catalog.InMemoryCatalog;
 import main.java.com.cafepos.catalog.SimpleProduct;
 import main.java.com.cafepos.common.Money;
-import main.java.com.cafepos.domain.LineItem;
-import main.java.com.cafepos.domain.Order;
-import main.java.com.cafepos.domain.OrderIds;
-import main.java.com.cafepos.domain.OrderObserver;
+import main.java.com.cafepos.order.LineItem;
+import main.java.com.cafepos.order.Order;
+import main.java.com.cafepos.order.OrderIds;
+import main.java.com.cafepos.order.OrderObserver;
 import main.java.com.cafepos.payment.CashPayment;
 import org.junit.jupiter.api.*;
 
