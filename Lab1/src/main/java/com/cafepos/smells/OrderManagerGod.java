@@ -1,10 +1,8 @@
 package main.java.com.cafepos.smells;
 
+import main.java.com.cafepos.catalog.Product;
 import main.java.com.cafepos.common.Money;
 import main.java.com.cafepos.factory.ProductFactory;
-import main.java.com.cafepos.catalog.Product;
-
-import java.math.BigDecimal;
 
 // Step 2: Massive class attempting to take control of many different operations that should be extracted to their own systems
 // No locally stored variables. Variables are either global or handled within the function itself reducing flexibility
@@ -134,7 +132,7 @@ public class OrderManagerGod
 
         // Step 2: Use a formatted a string and append the string to the stringBuilder in order
         // to increase readability.
-        receipt.append("Tax: (").append(TAX_PERCENT).append("%): ").append(tax).append("\n");
+        receipt.append("Tax (").append(TAX_PERCENT).append("%): ").append(tax).append("\n");
         receipt.append("Total: ").append(total);
 
         String out = receipt.toString();
