@@ -1,6 +1,6 @@
 package main.java.com.cafepos.test;
 
-import main.java.com.cafepos.common.Money;
+import main.java.com.cafepos.domain.Money;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 

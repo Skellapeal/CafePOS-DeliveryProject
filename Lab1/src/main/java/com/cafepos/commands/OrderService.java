@@ -1,9 +1,9 @@
 package main.java.com.cafepos.commands;
 
 import main.java.com.cafepos.catalog.Product;
-import main.java.com.cafepos.common.Money;
+import main.java.com.cafepos.domain.Money;
 import main.java.com.cafepos.factory.ProductFactory;
-import main.java.com.cafepos.order.*;
+import main.java.com.cafepos.domain.*;
 import main.java.com.cafepos.payment.PaymentStrategy;
 
 public class OrderService

@@ -1,6 +1,6 @@
 package main.java.com.cafepos.catalog;
 
-import main.java.com.cafepos.common.Money;
+import main.java.com.cafepos.domain.Money;
 
 public final class SimpleProduct implements Product
 {

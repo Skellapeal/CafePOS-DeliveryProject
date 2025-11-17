@@ -1,14 +1,14 @@
 package main.java.com.cafepos.demo;
 
 import main.java.com.cafepos.factory.ProductFactory;
-import main.java.com.cafepos.checkout.FixedRateTaxPolicy;
-import main.java.com.cafepos.checkout.LoyaltyPercentDiscount;
-import main.java.com.cafepos.checkout.PricingService;
-import main.java.com.cafepos.checkout.ReceiptPrinter;
-import main.java.com.cafepos.checkout.CheckoutService;
+import main.java.com.cafepos.pricing.FixedRateTaxPolicy;
+import main.java.com.cafepos.pricing.LoyaltyPercentDiscount;
+import main.java.com.cafepos.pricing.PricingService;
+import main.java.com.cafepos.infra.ReceiptPrinter;
+import main.java.com.cafepos.app.CheckoutService;
 import main.java.com.cafepos.smells.OrderManagerGod;
 
-public final class Week6Demo
+/*public final class Week6Demo
 {
     public static void main(String[] args)
     {
@@ -25,4 +25,4 @@ public final class Week6Demo
         System.out.println("\nNew Receipt:\n" + newReceipt);
         System.out.println("\nMatch: " + oldReceipt.equals(newReceipt));
     }
-}
+}*/

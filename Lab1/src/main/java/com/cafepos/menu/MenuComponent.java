@@ -1,6 +1,6 @@
 package main.java.com.cafepos.menu;
 
-import main.java.com.cafepos.common.Money;
+import main.java.com.cafepos.domain.Money;
 
 import java.util.Iterator;
 

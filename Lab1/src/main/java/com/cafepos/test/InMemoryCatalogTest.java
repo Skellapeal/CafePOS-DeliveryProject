@@ -3,7 +3,7 @@ package main.java.com.cafepos.test;
 import main.java.com.cafepos.catalog.InMemoryCatalog;
 import main.java.com.cafepos.catalog.Product;
 import main.java.com.cafepos.catalog.SimpleProduct;
-import main.java.com.cafepos.common.Money;
+import main.java.com.cafepos.domain.Money;
 
 import java.util.Optional;
 

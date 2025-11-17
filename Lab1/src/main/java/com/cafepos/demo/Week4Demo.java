@@ -3,11 +3,11 @@ package main.java.com.cafepos.demo;
 import main.java.com.cafepos.catalog.Catalog;
 import main.java.com.cafepos.catalog.InMemoryCatalog;
 import main.java.com.cafepos.catalog.SimpleProduct;
-import main.java.com.cafepos.common.Money;
-import main.java.com.cafepos.order.*;
+import main.java.com.cafepos.domain.Money;
+import main.java.com.cafepos.domain.*;
 import main.java.com.cafepos.payment.CashPayment;
 
-public final class Week4Demo
+/*public final class Week4Demo
 {
     public static void main(String[] args)
     {
@@ -25,4 +25,4 @@ public final class Week4Demo
         order.markReady();
     }
 }
-
+*/

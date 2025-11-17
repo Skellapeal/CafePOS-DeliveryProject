@@ -1,7 +1,7 @@
 package main.java.com.cafepos.smells;
 
 import main.java.com.cafepos.catalog.Product;
-import main.java.com.cafepos.common.Money;
+import main.java.com.cafepos.domain.Money;
 import main.java.com.cafepos.factory.ProductFactory;
 
 // Step 2: Massive class attempting to take control of many different operations that should be extracted to their own systems

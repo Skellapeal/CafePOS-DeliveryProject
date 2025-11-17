@@ -2,7 +2,7 @@ package main.java.com.cafepos.factory;
 
 import main.java.com.cafepos.catalog.Product;
 import main.java.com.cafepos.catalog.SimpleProduct;
-import main.java.com.cafepos.common.Money;
+import main.java.com.cafepos.domain.Money;
 import main.java.com.cafepos.decorator.ExtraShot;
 import main.java.com.cafepos.decorator.OatMilk;
 import main.java.com.cafepos.decorator.SizeLarge;

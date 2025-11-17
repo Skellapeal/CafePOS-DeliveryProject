@@ -1,6 +1,6 @@
 package main.java.com.cafepos.test;
 
-import main.java.com.cafepos.common.Money;
+import main.java.com.cafepos.domain.Money;
 import main.java.com.cafepos.menu.Menu;
 import main.java.com.cafepos.menu.MenuComponent;
 import main.java.com.cafepos.menu.MenuItem;

@@ -1,7 +1,7 @@
 package main.java.com.cafepos.decorator;
 
 import main.java.com.cafepos.catalog.Product;
-import main.java.com.cafepos.common.Money;
+import main.java.com.cafepos.domain.Money;
 
 public class ExtraShot extends ProductDecorator implements Priced
 {

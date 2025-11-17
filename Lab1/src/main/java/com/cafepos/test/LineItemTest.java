@@ -3,8 +3,8 @@ package main.java.com.cafepos.test;
 import main.java.com.cafepos.catalog.Catalog;
 import main.java.com.cafepos.catalog.InMemoryCatalog;
 import main.java.com.cafepos.catalog.SimpleProduct;
-import main.java.com.cafepos.common.Money;
-import main.java.com.cafepos.order.LineItem;
+import main.java.com.cafepos.domain.Money;
+import main.java.com.cafepos.domain.LineItem;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
