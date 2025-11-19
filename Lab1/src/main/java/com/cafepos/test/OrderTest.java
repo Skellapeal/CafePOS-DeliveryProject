@@ -1,14 +1,13 @@
 package main.java.com.cafepos.test;
 
-import main.java.com.cafepos.catalog.Catalog;
-import main.java.com.cafepos.catalog.InMemoryCatalog;
-import main.java.com.cafepos.catalog.SimpleProduct;
-import main.java.com.cafepos.domain.Money;
+import main.java.com.cafepos.domain.catalog.Catalog;
+import main.java.com.cafepos.infrastructure.InMemoryCatalog;
+import main.java.com.cafepos.domain.catalog.SimpleProduct;
+import main.java.com.cafepos.domain.value.Money;
 import main.java.com.cafepos.domain.LineItem;
 import main.java.com.cafepos.domain.Order;
 import main.java.com.cafepos.domain.OrderIds;
 import main.java.com.cafepos.domain.OrderObserver;
-import main.java.com.cafepos.payment.CashPayment;
 import org.junit.jupiter.api.*;
 
 import java.lang.reflect.Field;

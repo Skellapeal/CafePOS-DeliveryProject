@@ -1,6 +1,6 @@
 package main.java.com.cafepos.test;
 
-import main.java.com.cafepos.domain.CustomerNotifier;
+import main.java.com.cafepos.infrastructure.CustomerNotifier;
 import main.java.com.cafepos.domain.Order;
 import main.java.com.cafepos.domain.OrderIds;
 

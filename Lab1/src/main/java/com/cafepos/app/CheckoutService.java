@@ -1,7 +1,7 @@
 package main.java.com.cafepos.app;
 
 import main.java.com.cafepos.domain.*;
-import main.java.com.cafepos.pricing.PricingService;
+import main.java.com.cafepos.domain.pricing.PricingService;
 
 public final class CheckoutService
 {
@@ -22,12 +22,12 @@ public final class CheckoutService
 }
 
 /*
-import main.java.com.cafepos.catalog.Product;
+import main.java.com.cafepos.domain.catalog.Product;
 import main.java.com.cafepos.checkout.PricingService;
 import main.java.com.cafepos.infra.ReceiptPrinter;
-import main.java.com.cafepos.domain.Money;
-import main.java.com.cafepos.decorator.Priced;
-import main.java.com.cafepos.factory.ProductFactory;
+import main.java.com.cafepos.domain.value.Money;
+import main.java.com.cafepos.domain.decorator.Priced;
+import main.java.com.cafepos.app.factory.ProductFactory;
 
 public final class CheckoutService
 {

@@ -1,10 +1,10 @@
 package main.java.com.cafepos.test;
 
-import main.java.com.cafepos.domain.Money;
-import main.java.com.cafepos.menu.Menu;
-import main.java.com.cafepos.menu.MenuComponent;
-import main.java.com.cafepos.menu.MenuItem;
-import main.java.com.cafepos.state.OrderFSM;
+import main.java.com.cafepos.domain.value.Money;
+import main.java.com.cafepos.domain.menu.Menu;
+import main.java.com.cafepos.domain.menu.MenuComponent;
+import main.java.com.cafepos.domain.menu.MenuItem;
+import main.java.com.cafepos.app.state.OrderFSM;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -1,13 +1,5 @@
 package main.java.com.cafepos.demo;
 
-import main.java.com.cafepos.factory.ProductFactory;
-import main.java.com.cafepos.pricing.FixedRateTaxPolicy;
-import main.java.com.cafepos.pricing.LoyaltyPercentDiscount;
-import main.java.com.cafepos.pricing.PricingService;
-import main.java.com.cafepos.infra.ReceiptPrinter;
-import main.java.com.cafepos.app.CheckoutService;
-import main.java.com.cafepos.smells.OrderManagerGod;
-
 /*public final class Week6Demo
 {
     public static void main(String[] args)

@@ -1,5 +1,7 @@
 package main.java.com.cafepos.domain;
 
+import main.java.com.cafepos.domain.value.Money;
+
 import java.util.*;
 
 public final class Order
@@ -53,8 +55,8 @@ public final class Order
 }
 
 /*
-import main.java.com.cafepos.domain.Money;
-import main.java.com.cafepos.payment.PaymentStrategy;
+import main.java.com.cafepos.domain.value.Money;
+import main.java.com.cafepos.domain.payment.PaymentStrategy;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,6 @@
 package main.java.com.cafepos.demo;
 
-import main.java.com.cafepos.state.OrderFSM;
+import main.java.com.cafepos.app.state.OrderFSM;
 
 public final class Week9Demo_States
 {

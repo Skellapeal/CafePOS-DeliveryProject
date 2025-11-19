@@ -1,7 +1,7 @@
 package main.java.com.cafepos.ui;
 
 import main.java.com.cafepos.app.events.*;
-import main.java.com.cafepos.infra.Wiring;
+import main.java.com.cafepos.infrastructure.Wiring;
 
 public class EventWiringDemo
 {

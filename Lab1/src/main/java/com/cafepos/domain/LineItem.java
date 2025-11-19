@@ -1,7 +1,8 @@
 package main.java.com.cafepos.domain;
 
-import main.java.com.cafepos.catalog.Product;
-import main.java.com.cafepos.decorator.Priced;
+import main.java.com.cafepos.domain.catalog.Product;
+import main.java.com.cafepos.domain.decorator.Priced;
+import main.java.com.cafepos.domain.value.Money;
 
 public final class LineItem
 {

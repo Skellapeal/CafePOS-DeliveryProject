@@ -1,8 +1,8 @@
 package main.java.com.cafepos.demo;
 
-import main.java.com.cafepos.domain.Money;
-import main.java.com.cafepos.menu.Menu;
-import main.java.com.cafepos.menu.MenuItem;
+import main.java.com.cafepos.domain.value.Money;
+import main.java.com.cafepos.domain.menu.Menu;
+import main.java.com.cafepos.domain.menu.MenuItem;
 
 
 public class Week9Demo_Menu

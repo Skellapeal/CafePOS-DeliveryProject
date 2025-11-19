@@ -1,6 +1,6 @@
 package main.java.com.cafepos.demo;
 
-import main.java.com.cafepos.infra.Wiring;
+import main.java.com.cafepos.infrastructure.Wiring;
 import main.java.com.cafepos.ui.*;
 
 public final class Week10Demo_MVC

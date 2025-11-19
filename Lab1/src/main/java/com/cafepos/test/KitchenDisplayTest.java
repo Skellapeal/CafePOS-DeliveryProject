@@ -1,8 +1,8 @@
 package main.java.com.cafepos.test;
 
-import main.java.com.cafepos.catalog.SimpleProduct;
-import main.java.com.cafepos.domain.Money;
-import main.java.com.cafepos.domain.KitchenDisplay;
+import main.java.com.cafepos.domain.catalog.SimpleProduct;
+import main.java.com.cafepos.domain.value.Money;
+import main.java.com.cafepos.infrastructure.KitchenDisplay;
 import main.java.com.cafepos.domain.LineItem;
 import main.java.com.cafepos.domain.Order;
 

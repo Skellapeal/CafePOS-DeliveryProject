@@ -1,12 +1,5 @@
 package main.java.com.cafepos.demo;
 
-import main.java.com.cafepos.catalog.Catalog;
-import main.java.com.cafepos.catalog.InMemoryCatalog;
-import main.java.com.cafepos.catalog.SimpleProduct;
-import main.java.com.cafepos.domain.Money;
-import main.java.com.cafepos.domain.*;
-import main.java.com.cafepos.payment.CashPayment;
-
 /*public final class Week4Demo
 {
     public static void main(String[] args)

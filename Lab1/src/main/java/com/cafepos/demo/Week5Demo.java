@@ -1,11 +1,11 @@
 package main.java.com.cafepos.demo;
 
 
-import main.java.com.cafepos.catalog.Product;
+import main.java.com.cafepos.domain.catalog.Product;
 import main.java.com.cafepos.domain.LineItem;
 import main.java.com.cafepos.domain.Order;
 import main.java.com.cafepos.domain.OrderIds;
-import main.java.com.cafepos.factory.ProductFactory;
+import main.java.com.cafepos.app.factory.ProductFactory;
 
 public final class Week5Demo
 {

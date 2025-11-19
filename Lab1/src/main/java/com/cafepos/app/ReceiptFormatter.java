@@ -5,7 +5,7 @@ import java.util.List;
 
 public final class ReceiptFormatter
 {
-    public String format(long id, List<LineItem> items, main.java.com.cafepos.pricing.PricingService.PricingResult pr, int taxPercent)
+    public String format(long id, List<LineItem> items, main.java.com.cafepos.domain.pricing.PricingService.PricingResult pr, int taxPercent)
     {
         StringBuilder sb = new StringBuilder();
         sb.append("Order #").append(id).append("\n");

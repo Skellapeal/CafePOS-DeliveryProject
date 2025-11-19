@@ -1,9 +1,9 @@
 package main.java.com.cafepos.test;
 
-import main.java.com.cafepos.catalog.InMemoryCatalog;
-import main.java.com.cafepos.catalog.Product;
-import main.java.com.cafepos.catalog.SimpleProduct;
-import main.java.com.cafepos.domain.Money;
+import main.java.com.cafepos.infrastructure.InMemoryCatalog;
+import main.java.com.cafepos.domain.catalog.Product;
+import main.java.com.cafepos.domain.catalog.SimpleProduct;
+import main.java.com.cafepos.domain.value.Money;
 
 import java.util.Optional;
 

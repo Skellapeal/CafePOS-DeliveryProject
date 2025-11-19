@@ -2,7 +2,7 @@ package main.java.com.cafepos.ui;
 
 import main.java.com.cafepos.app.CheckoutService;
 import main.java.com.cafepos.domain.*;
-import main.java.com.cafepos.factory.ProductFactory;
+import main.java.com.cafepos.app.factory.ProductFactory;
 
 public final class OrderController
 {

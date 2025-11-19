@@ -1,12 +1,12 @@
 package main.java.com.cafepos.demo;
 
-import main.java.com.cafepos.commands.AddItemCommand;
-import main.java.com.cafepos.commands.OrderService;
-import main.java.com.cafepos.commands.PayCommand;
-import main.java.com.cafepos.commands.PosRemote;
+import main.java.com.cafepos.app.commands.AddItemCommand;
+import main.java.com.cafepos.app.commands.OrderService;
+import main.java.com.cafepos.app.commands.PayCommand;
+import main.java.com.cafepos.app.commands.PosRemote;
 import main.java.com.cafepos.domain.Order;
 import main.java.com.cafepos.domain.OrderIds;
-import main.java.com.cafepos.payment.CardPayment;
+import main.java.com.cafepos.domain.payment.CardPayment;
 
 public class Week8Demo
 {

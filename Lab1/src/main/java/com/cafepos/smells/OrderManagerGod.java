@@ -1,8 +1,8 @@
 package main.java.com.cafepos.smells;
 
-import main.java.com.cafepos.catalog.Product;
-import main.java.com.cafepos.domain.Money;
-import main.java.com.cafepos.factory.ProductFactory;
+import main.java.com.cafepos.domain.catalog.Product;
+import main.java.com.cafepos.domain.value.Money;
+import main.java.com.cafepos.app.factory.ProductFactory;
 
 // Step 2: Massive class attempting to take control of many different operations that should be extracted to their own systems
 // No locally stored variables. Variables are either global or handled within the function itself reducing flexibility
@@ -43,7 +43,7 @@ public class OrderManagerGod
             // Step 2: Reduced readability by inlining import
             // use of var suggests the return type is different between assignments
             // There is none, use concrete declaration for increased readability
-            var priced = product instanceof main.java.com.cafepos.decorator.Priced
+            var priced = product instanceof main.java.com.cafepos.domain.decorator.Priced
                     p ? p.price() : product.basePrice();
             unitPrice = priced;
         }

@@ -1,15 +1,15 @@
 package main.java.com.cafepos.test;
 
-import main.java.com.cafepos.commands.AddItemCommand;
-import main.java.com.cafepos.commands.MacroCommand;
-import main.java.com.cafepos.commands.OrderService;
-import main.java.com.cafepos.commands.PosRemote;
-import main.java.com.cafepos.factory.ProductFactory;
-import main.java.com.cafepos.infra.LegacyThermalPrinter;
+import main.java.com.cafepos.app.commands.AddItemCommand;
+import main.java.com.cafepos.app.commands.MacroCommand;
+import main.java.com.cafepos.app.commands.OrderService;
+import main.java.com.cafepos.app.commands.PosRemote;
+import main.java.com.cafepos.app.factory.ProductFactory;
+import main.java.com.cafepos.infrastructure.LegacyThermalPrinter;
 import main.java.com.cafepos.domain.LineItem;
 import main.java.com.cafepos.domain.Order;
 import main.java.com.cafepos.domain.OrderIds;
-import main.java.com.cafepos.infra.LegacyPrinterAdapter;
+import main.java.com.cafepos.infrastructure.LegacyPrinterAdapter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

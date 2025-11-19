@@ -1,15 +1,15 @@
 package main.java.com.cafepos.test;
 
-import main.java.com.cafepos.catalog.Product;
-import main.java.com.cafepos.catalog.SimpleProduct;
-import main.java.com.cafepos.domain.Money;
-import main.java.com.cafepos.decorator.ExtraShot;
-import main.java.com.cafepos.decorator.OatMilk;
-import main.java.com.cafepos.decorator.SizeLarge;
+import main.java.com.cafepos.domain.catalog.Product;
+import main.java.com.cafepos.domain.catalog.SimpleProduct;
+import main.java.com.cafepos.domain.value.Money;
+import main.java.com.cafepos.domain.decorator.ExtraShot;
+import main.java.com.cafepos.domain.decorator.OatMilk;
+import main.java.com.cafepos.domain.decorator.SizeLarge;
 import main.java.com.cafepos.domain.LineItem;
 import main.java.com.cafepos.domain.Order;
-import main.java.com.cafepos.decorator.Priced;
-import main.java.com.cafepos.factory.ProductFactory;
+import main.java.com.cafepos.domain.decorator.Priced;
+import main.java.com.cafepos.app.factory.ProductFactory;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

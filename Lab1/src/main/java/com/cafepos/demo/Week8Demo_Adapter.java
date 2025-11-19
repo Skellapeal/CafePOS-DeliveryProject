@@ -1,8 +1,8 @@
 package main.java.com.cafepos.demo;
 
-import main.java.com.cafepos.infra.LegacyThermalPrinter;
-import main.java.com.cafepos.infra.LegacyPrinterAdapter;
-import main.java.com.cafepos.infra.Printer;
+import main.java.com.cafepos.infrastructure.LegacyThermalPrinter;
+import main.java.com.cafepos.infrastructure.LegacyPrinterAdapter;
+import main.java.com.cafepos.infrastructure.Printer;
 
 public class Week8Demo_Adapter
 {
