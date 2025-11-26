@@ -1,9 +1,8 @@
 package main.java.com.cafepos.infrastructure;
 
-import main.java.com.cafepos.domain.catalog.Catalog;
-import main.java.com.cafepos.domain.catalog.Product;
-
+import main.java.com.cafepos.domain.catalog.*;
 import java.util.*;
+
 public final class InMemoryCatalog implements Catalog
 {
     private final Map<String, Product> byId = new HashMap<>();
