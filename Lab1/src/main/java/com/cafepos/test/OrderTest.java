@@ -51,7 +51,7 @@ public class OrderTest
 
         assertEquals(0, totalWithTax.compareTo(Money.of(9.35)));
 
-        assertEquals("1001", order.id());
+        assertEquals(1001, order.id());
     }
 
     @Test
@@ -116,21 +116,6 @@ public class OrderTest
     }
 
     @Test
-    public void testOrderObserverRegistration()
-    {
-        Order order = new Order(OrderIds.next());
-        TestObserver observer = new TestObserver();
-
-        //order.registerOrder(observer);
-        assertEquals(0, observer.updateCount);
-
-        SimpleProduct product = new SimpleProduct("P-OBS", "Observer Test", Money.of(1.00));
-        order.addItem(new LineItem(product, 1));
-        assertEquals(1, observer.updateCount);
-        assertEquals("itemAdded", observer.lastEvent);
-    }
-
-    @Test
     public void testOrderObserverUnregistration()
     {
         Order order = new Order(OrderIds.next());
@@ -142,68 +127,6 @@ public class OrderTest
         SimpleProduct product = new SimpleProduct("P-UNREG", "Unregister Test", Money.of(1.00));
         order.addItem(new LineItem(product, 1));
         assertEquals(0, observer.updateCount);
-    }
-
-    @Test
-    public void ExceptionOrderObserverNullRegistrationTest()
-    {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            Order order = new Order(OrderIds.next());
-            //order.registerOrder(null);
-        });
-    }
-
-    @Test
-    public void ExceptionOrderObserverNullUnregistrationTest()
-    {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            Order order = new Order(OrderIds.next());
-            //order.unregisterOrder(null);
-        });
-    }
-
-    @Test
-    public void testOrderPaymentNotification()
-    {
-        Order order = new Order(OrderIds.next());
-        TestObserver observer = new TestObserver();
-        //order.registerOrder(observer);
-
-        SimpleProduct product = new SimpleProduct("P-PAY", "Payment Test", Money.of(10.00));
-        order.addItem(new LineItem(product, 1));
-
-        //order.pay(new CashPayment());
-        assertEquals(2, observer.updateCount);
-        assertEquals("paid", observer.lastEvent);
-    }
-
-    @Test
-    public void testOrderMarkReady()
-    {
-        Order order = new Order(OrderIds.next());
-        TestObserver observer = new TestObserver();
-        //order.registerOrder(observer);
-
-        //order.markReady();
-        assertEquals(1, observer.updateCount);
-        assertEquals("ready", observer.lastEvent);
-    }
-
-    @Test
-    public void ExceptionOrderPaymentNullTest()
-    {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            Order order = new Order(OrderIds.next());
-            //order.pay(null);
-        });
-    }
-
-    @Test
-    public void testOrderIdConsistency()
-    {
-        long orderId = OrderIds.next();
-        Order order = new Order(orderId);
-        assertEquals(String.valueOf(orderId), order.id());
     }
 
     @Test

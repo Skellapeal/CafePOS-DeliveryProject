@@ -1,5 +1,6 @@
 package main.java.com.cafepos.domain;
 
+import main.java.com.cafepos.domain.payment.PaymentStrategy;
 import main.java.com.cafepos.domain.value.Money;
 
 import java.util.*;
@@ -48,6 +49,17 @@ public final class Order
         }
         return subtotal().multiply(percent).divide(100);
     }
+
+    public void pay(PaymentStrategy paymentMethod)
+    {
+        if(paymentMethod == null)
+        {
+            throw new IllegalArgumentException("Payment method required");
+        }
+        paymentMethod.pay(this);
+        //notifyObservers("paid");
+    }
+
     public Money totalWithTax(int percent)
     {
         return subtotal().add(taxAtPercent(percent));

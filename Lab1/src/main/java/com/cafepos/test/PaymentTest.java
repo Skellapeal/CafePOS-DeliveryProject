@@ -1,6 +1,9 @@
 package main.java.com.cafepos.test;
 
 import main.java.com.cafepos.domain.catalog.Catalog;
+import main.java.com.cafepos.domain.payment.CardPayment;
+import main.java.com.cafepos.domain.payment.CashPayment;
+import main.java.com.cafepos.domain.payment.WalletPayment;
 import main.java.com.cafepos.infrastructure.InMemoryCatalog;
 import main.java.com.cafepos.domain.catalog.SimpleProduct;
 import main.java.com.cafepos.domain.value.Money;
@@ -24,7 +27,7 @@ public class PaymentTest
         order.addItem(new LineItem(p, 1));
         final boolean[] called = {false};
         PaymentStrategy fake = _ -> called[0] = true;
-        //order.pay(fake);
+        order.pay(fake);
         assertTrue(called[0], "Payment strategy should be called");
     }
     @Test
@@ -40,7 +43,7 @@ public class PaymentTest
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(outputStream));
 
-        //order.pay(new CardPayment("123456789"));
+        order.pay(new CardPayment("123456789"));
 
         System.setOut(originalOut);
 
@@ -60,7 +63,7 @@ public class PaymentTest
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(outputStream));
 
-        //order.pay(new WalletPayment("Neil&Jan-Joint-Financial-Account"));
+        order.pay(new WalletPayment("Neil&Jan-Joint-Financial-Account"));
 
         System.setOut(originalOut);
 
@@ -80,7 +83,7 @@ public class PaymentTest
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(outputStream));
 
-        //order.pay(new CashPayment());
+        order.pay(new CashPayment());
 
         System.setOut(originalOut);
 
@@ -99,7 +102,7 @@ public class PaymentTest
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(outputStream));
-        //order.pay(new CardPayment("1234"));
+        order.pay(new CardPayment("1234"));
         System.setOut(originalOut);
 
         String expectedOutput = "[Card] Customer paid 11.00 EUR with card ****1234" + System.lineSeparator();
@@ -117,7 +120,7 @@ public class PaymentTest
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(outputStream));
-        //order.pay(new CardPayment("4111111111111111"));
+        order.pay(new CardPayment("4111111111111111"));
         System.setOut(originalOut);
 
         String expectedOutput = "[Card] Customer paid 16.50 EUR with card ****1111" + System.lineSeparator();
@@ -135,7 +138,7 @@ public class PaymentTest
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(outputStream));
-        //order.pay(new WalletPayment(""));
+        order.pay(new WalletPayment(""));
         System.setOut(originalOut);
 
         String expectedOutput = "[Wallet] Customer paid 5.50 EUR with wallet " + System.lineSeparator();
@@ -153,7 +156,7 @@ public class PaymentTest
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(outputStream));
-        //order.pay(new WalletPayment("user@example.com"));
+        order.pay(new WalletPayment("user@example.com"));
         System.setOut(originalOut);
 
         String expectedOutput = "[Wallet] Customer paid 8.80 EUR with wallet user@example.com" + System.lineSeparator();
@@ -168,7 +171,7 @@ public class PaymentTest
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(outputStream));
-        //emptyOrder.pay(new CashPayment());
+        emptyOrder.pay(new CashPayment());
         System.setOut(originalOut);
 
         String expectedOutput = "[Cash] Customer paid 0.00 EUR" + System.lineSeparator();
@@ -186,7 +189,7 @@ public class PaymentTest
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(outputStream));
-        //order.pay(new CashPayment());
+        order.pay(new CashPayment());
         System.setOut(originalOut);
 
         String expectedOutput = "[Cash] Customer paid 1100.00 EUR" + System.lineSeparator();
@@ -205,12 +208,12 @@ public class PaymentTest
         PrintStream originalOut = System.out;
 
         System.setOut(new PrintStream(outputStream1));
-        //order.pay(new CashPayment());
+        order.pay(new CashPayment());
         System.setOut(originalOut);
 
         ByteArrayOutputStream outputStream2 = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream2));
-        //order.pay(new CardPayment("987654321"));
+        order.pay(new CardPayment("987654321"));
         System.setOut(originalOut);
 
         assertTrue(outputStream1.toString().contains("[Cash]"));
@@ -230,7 +233,7 @@ public class PaymentTest
             paymentLog.append("Custom payment of ").append(orderToPayFor.totalWithTax(10));
         };
 
-        //order.pay(customStrategy);
+        order.pay(customStrategy);
         assertTrue(paymentLog.toString().contains("Custom payment of 13.20"));
     }
 
@@ -245,7 +248,7 @@ public class PaymentTest
         final Order[] receivedOrder = {null};
         PaymentStrategy testStrategy = (orderRef) -> receivedOrder[0] = orderRef;
 
-        //order.pay(testStrategy);
+        order.pay(testStrategy);
         assertEquals(order.id(), receivedOrder[0].id());
     }
 }
