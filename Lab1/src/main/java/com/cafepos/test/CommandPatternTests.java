@@ -33,7 +33,7 @@ public class CommandPatternTests
     @Test
     void undoStackTest()
     {
-        AddItemCommand addItem = new AddItemCommand(orderService, "ESP", 1);
+        AddItemCommand addItem = new AddItemCommand(orderService, "espresso", 1);
         addItem.execute();
         assertEquals(1, myOrder.items().size());
         addItem.undo();
@@ -44,15 +44,15 @@ public class CommandPatternTests
     void reverseOrderUndo()
     {
         ProductFactory productFactory = new ProductFactory();
-        AddItemCommand addItem = new AddItemCommand(orderService, "ESP", 1);
-        AddItemCommand addItem2 = new AddItemCommand(orderService, "LAT", 1);
+        AddItemCommand addItem = new AddItemCommand(orderService, "espresso", 1);
+        AddItemCommand addItem2 = new AddItemCommand(orderService, "latte", 1);
 
         MacroCommand allCommands = new MacroCommand(new AddItemCommand[]{addItem, addItem2});
         allCommands.execute();
         assertEquals(2, myOrder.items().size());
         addItem.undo();
         assertEquals(1, myOrder.items().size());
-        assertEquals(new LineItem(productFactory.create("ESP"), 1).product().name(), myOrder.items().getFirst().product().name());
+        assertEquals(new LineItem(productFactory.create("espresso"), 1).product().name(), myOrder.items().getFirst().product().name());
     }
 
     @Test
@@ -76,8 +76,8 @@ public class CommandPatternTests
     void smallIntegrationTest()
     {
         PosRemote keyBindings = new PosRemote(2);
-        AddItemCommand addItem = new AddItemCommand(orderService, "ESP", 1);
-        AddItemCommand addItem2 = new AddItemCommand(orderService, "LAT", 1);
+        AddItemCommand addItem = new AddItemCommand(orderService, "espresso", 1);
+        AddItemCommand addItem2 = new AddItemCommand(orderService, "latte", 1);
 
         keyBindings.setSlot(0, addItem);
         keyBindings.setSlot(1, addItem2);
@@ -87,6 +87,6 @@ public class CommandPatternTests
             keyBindings.press(i);
         }
 
-        assertEquals("5.70", myOrder.subtotal().toString());
+        assertEquals("6.40", myOrder.subtotal().toString());
     }
 }

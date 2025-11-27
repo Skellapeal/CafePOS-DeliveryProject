@@ -43,7 +43,7 @@ public class FactoryTest
     void factory_parses_recipe()
     {
         ProductFactory f = new ProductFactory();
-        Product p = f.create("ESP SHOT OAT");
+        Product p = f.create("espresso SHOT OAT");
 
         assertTrue(p.name().contains("Espresso") && p.name().contains("Oat Milk"));
     }

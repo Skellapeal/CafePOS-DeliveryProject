@@ -19,7 +19,7 @@ public class Week5ManualVSChaining
         @Test
         void factory_and_manual_build_same_drink() {
             // Build the decorated drink via factory
-            Product viaFactory = new ProductFactory().create("ESP SHOT OAT L");
+            Product viaFactory = new ProductFactory().create("espresso SHOT OAT L");
 
             // Build the same drink manually
             Product viaManual = new SizeLarge(new OatMilk(new ExtraShot(new SimpleProduct("P-ESP", "Espresso", Money.of(2.50)))));
