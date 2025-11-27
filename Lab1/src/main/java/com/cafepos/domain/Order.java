@@ -57,7 +57,6 @@ public final class Order
             throw new IllegalArgumentException("Payment method required");
         }
         paymentMethod.pay(this);
-        //notifyObservers("paid");
     }
 
     public Money totalWithTax(int percent)

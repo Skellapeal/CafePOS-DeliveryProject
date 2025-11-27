@@ -12,13 +12,13 @@ public final class OrderController
 
     public OrderController(OrderRepository repo, CheckoutService checkout)
     {
-        this.repo = repo; this.checkout = checkout;
+        this.repo = repo;
+        this.checkout = checkout;
     }
 
-    public long createOrder(long id)
+    public void createOrder(long id)
     {
         repo.save(new Order(id));
-        return id;
     }
 
     public void addItem(long orderId, String recipe, int qty)

@@ -10,7 +10,8 @@ public final class CheckoutService
 
     public CheckoutService(OrderRepository orders, PricingService pricing)
     {
-        this.orders = orders; this.pricing = pricing;
+        this.orders = orders;
+        this.pricing = pricing;
     }
 
     public String checkout(long orderId, int taxPercent)

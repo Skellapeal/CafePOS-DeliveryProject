@@ -6,7 +6,7 @@ import main.java.com.cafepos.domain.pricing.*;
 
 public final class Wiring
 {
-    public static record Components (OrderRepository repo, PricingService pricing, CheckoutService checkout)
+    public record Components (OrderRepository repo, PricingService pricing, CheckoutService checkout)
     { }
 
     public static Components createDefault()

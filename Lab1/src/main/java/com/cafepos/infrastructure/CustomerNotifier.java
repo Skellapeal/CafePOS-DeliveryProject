@@ -1,7 +1,6 @@
 package main.java.com.cafepos.infrastructure;
 
-import main.java.com.cafepos.domain.Order;
-import main.java.com.cafepos.domain.OrderObserver;
+import main.java.com.cafepos.domain.*;
 
 public final class CustomerNotifier implements OrderObserver
 {

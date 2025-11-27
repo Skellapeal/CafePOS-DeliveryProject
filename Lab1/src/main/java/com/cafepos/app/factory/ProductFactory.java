@@ -14,21 +14,28 @@ public final class ProductFactory
     {
         if (recipe == null || recipe.isBlank()) throw new IllegalArgumentException("recipe required");
 
-        String[] raw = recipe.split("[ +]+");
+        String[] raw = recipe.split("\\s+");
         String[] parts = java.util.Arrays.stream(raw).map(String::trim).map(String::toUpperCase).toArray(String[]::new);
 
-        Product product = switch (parts[0])
+        Product product = switch (parts[0].toLowerCase())
         {
-            case "ESP" -> new SimpleProduct("P-ESP", "Espresso",Money.of(2.50));
-            case "LAT" -> new SimpleProduct("P-LAT", "Latte",Money.of(3.20));
-            case "CAP" -> new SimpleProduct("P-CAP","Cappuccino", Money.of(3.00));
+            case "espresso" -> new SimpleProduct("P-ESP", "Espresso",Money.of(2.50));
+            case "latte" -> new SimpleProduct("P-LAT", "Latte",Money.of(3.90));
+            case "cappuccino" -> new SimpleProduct("P-CAP","Cappuccino", Money.of(4.00));
+            case "americano" -> new SimpleProduct("P-AMR", "Americano",Money.of(5.00));
+            case "cola" -> new SimpleProduct("P-COL", "Cola",Money.of(2.10));
+            case "orange" -> new SimpleProduct("P-ORG","Club Orange", Money.of(1.80));
+            case "milk" -> new SimpleProduct("P-MLK", "Milk",Money.of(1.50));
+            case "chocolate" -> new SimpleProduct("P-CHO", "Chocolate",Money.of(2.50));
+            case "ice-cream" -> new SimpleProduct("P-ICE","Ice Cream", Money.of(1.50));
+            case "cake" -> new SimpleProduct("P-CAK", "Cake",Money.of(4.50));
 
             default -> throw new
                     IllegalArgumentException("Unknown base: " + parts[0]);
         };
         for (int i = 1; i < parts.length; i++)
         {
-            product = switch (parts[i])
+            product = switch (parts[i].toUpperCase())
             {
                 case "SHOT" -> new ExtraShot(product);
                 case "OAT" -> new OatMilk(product);
