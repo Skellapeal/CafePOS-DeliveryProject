@@ -109,9 +109,9 @@ public final class CafePOSTerminalFINAL
 
         // Coffee Menu
         Menu coffeeMenu = new Menu(" Coffee ");
-        MenuItem espresso = new MenuItem("Espresso", Money.of(2.50), true);
+        MenuItem espresso = new MenuItem("Espresso", Money.of(2.50), false);
         MenuItem latte = new MenuItem("Latte", Money.of(3.90), true);
-        MenuItem cappuccino = new MenuItem("Cappuccino", Money.of(4.00), true);
+        MenuItem cappuccino = new MenuItem("Cappuccino", Money.of(4.00), false);
         MenuItem americano = new MenuItem("Americano", Money.of(5.00), true);
 
         coffeeMenu.add(espresso);
@@ -128,7 +128,7 @@ public final class CafePOSTerminalFINAL
         Menu drinksMenu = new Menu(" Drinks ");
         MenuItem cola = new MenuItem("Cola", Money.of(2.10), true);
         MenuItem clubOrange = new MenuItem("Club Orange", Money.of(1.80), true);
-        MenuItem milk = new MenuItem("Milk", Money.of(1.50), true);
+        MenuItem milk = new MenuItem("Milk", Money.of(1.50), false);
 
         drinksMenu.add(cola);
         drinksMenu.add(clubOrange);
@@ -141,9 +141,9 @@ public final class CafePOSTerminalFINAL
 
         // Desserts Menu
         Menu desserts = new Menu(" Desserts ");
-        MenuItem chocolate = new MenuItem("Chocolate", Money.of(2.50), true);
+        MenuItem chocolate = new MenuItem("Chocolate", Money.of(2.50), false);
         MenuItem iceCream = new MenuItem("Ice Cream", Money.of(1.50), true);
-        MenuItem cake = new MenuItem("Cake", Money.of(4.50), true);
+        MenuItem cake = new MenuItem("Cake", Money.of(4.50), false);
 
         desserts.add(chocolate);
         desserts.add(iceCream);
@@ -304,9 +304,9 @@ public final class CafePOSTerminalFINAL
         System.out.println(SEPARATOR + "\n");
 
         orderStatus.markReady();
+        bus.emit(new OrderReady(currentOrder.id()));
         orderStatus.deliver();
-
-        System.out.println(printReceipt());
+        printReceipt();
     }
 
     private void displayOrderStatus()
@@ -367,6 +367,11 @@ public final class CafePOSTerminalFINAL
         service = new OrderService(currentOrder);
         commandOperator = new PosRemote(10);
 
+        if (currentOrder.id() > 1001L)
+        {
+            printNewOrder();
+        }
+
         log("APP", "Initialising events, repository & checkout service");
         Wiring.Components wiring = Wiring.createDefault();
         controller =  new OrderController(wiring.repo(), wiring.checkout());
@@ -423,8 +428,15 @@ public final class CafePOSTerminalFINAL
     private void printWelcome()
     {
         System.out.println("\n" + THICK_SEPARATOR);
-        System.out.println("              Welcome to Starbuzz Café");
+        System.out.println("              Welcome to StarBuzz Café");
         System.out.println(THICK_SEPARATOR);
+    }
+
+    private void printNewOrder()
+    {
+        System.out.println("\n" + SEPARATOR);
+        System.out.println("              CREATING NEW ORDER");
+        System.out.println(SEPARATOR);
     }
 
     private void printHelp()
@@ -457,8 +469,9 @@ public final class CafePOSTerminalFINAL
         System.out.println("\n" + THICK_SEPARATOR + "\n");
     }
 
-    private String printReceipt()
+    private void printReceipt()
     {
+        Printer printer = new LegacyPrinterAdapter(new LegacyThermalPrinter());
         StringBuilder receipt = new StringBuilder();
 
         receipt.append("\n").append(THICK_SEPARATOR);
@@ -478,6 +491,7 @@ public final class CafePOSTerminalFINAL
         receipt.append("  Status: ").append(orderStatus.status()).append("\n");
         receipt.append(THICK_SEPARATOR);
 
-        return receipt.toString();
+        printer.print(receipt.toString());
+        System.out.println(receipt);
     }
 }
